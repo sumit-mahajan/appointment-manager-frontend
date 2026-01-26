@@ -1,22 +1,36 @@
+import { useNavigate } from 'react-router-dom'
 import { MainLayout } from '@/shared/components/layout/MainLayout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card'
+import { Button } from '@/shared/components/ui/button'
 import { useAuthStore } from '@/features/auth/store/auth.store'
-import { Calendar, Users, Clock } from 'lucide-react'
+import { Calendar, Users, Clock, Plus } from 'lucide-react'
+import { ROUTES } from '@/shared/constants/app.constants'
 
 export default function DashboardPage() {
   const { user } = useAuthStore()
+  const navigate = useNavigate()
 
   return (
     <MainLayout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-8">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">
-              Welcome back, {user?.name}!
-            </h1>
-            <p className="text-gray-600 mt-2">
-              Here's an overview of your clinic activity
-            </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Welcome back, {user?.name}!
+              </h1>
+              <p className="text-gray-600 mt-2">
+                Here's an overview of your clinic activity
+              </p>
+            </div>
+            <Button 
+              onClick={() => navigate(ROUTES.APPOINTMENTS_NEW)}
+              size="lg"
+              className="flex items-center space-x-2"
+            >
+              <Plus className="h-5 w-5" />
+              <span>Book Appointment</span>
+            </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

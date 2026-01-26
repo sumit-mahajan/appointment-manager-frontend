@@ -10,6 +10,7 @@ const AuthPage = lazy(() => import('@/pages/AuthPage'))
 const OnboardingPage = lazy(() => import('@/pages/OnboardingPage'))
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'))
 const JoinRequestsPage = lazy(() => import('@/pages/JoinRequestsPage'))
+const BookAppointmentPage = lazy(() => import('@/pages/BookAppointmentPage'))
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'))
 
 // Loading component
@@ -62,6 +63,16 @@ export const router = createBrowserRouter([
       <ProtectedRoute requireClinic>
         <Suspense fallback={<PageLoader />}>
           <JoinRequestsPage />
+        </Suspense>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: ROUTES.APPOINTMENTS_NEW,
+    element: (
+      <ProtectedRoute requireClinic>
+        <Suspense fallback={<PageLoader />}>
+          <BookAppointmentPage />
         </Suspense>
       </ProtectedRoute>
     ),

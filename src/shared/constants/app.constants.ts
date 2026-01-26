@@ -8,6 +8,7 @@ export const ROUTES = {
   JOIN_REQUESTS: '/join-requests',
   PATIENTS: '/patients',
   APPOINTMENTS: '/appointments',
+  APPOINTMENTS_NEW: '/appointments/new',
   SETTINGS: '/settings',
 } as const
 
