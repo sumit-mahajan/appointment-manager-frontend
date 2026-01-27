@@ -27,3 +27,20 @@ export interface CreateAppointmentRequest {
 export interface AvailabilityCheck {
   available: boolean
 }
+
+export interface UpdateAppointmentRequest {
+  status?: 'pending' | 'confirm' | 'cancel'
+  start?: string
+  end?: string
+  durationInMinutes?: number
+  didShowUp?: boolean
+  isEmergency?: boolean
+}
+
+export interface AppointmentWithPatient extends Appointment {
+  patients?: {
+    patient_id: string
+    name: string
+    contact: string | null
+  }
+}
