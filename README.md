@@ -1,6 +1,6 @@
-# Appointment Manager - Frontend
+# Appoint - Frontend
 
-A modern, production-grade React + TypeScript frontend for the Appointment Manager system. Built with Vite, Tailwind CSS, and shadcn/ui for a beautiful and responsive user experience.
+A modern, production-grade React + TypeScript frontend for Appoint, a smart appointment management system. Built with Vite, Tailwind CSS, and shadcn/ui for a beautiful and responsive user experience.
 
 ## Tech Stack
 

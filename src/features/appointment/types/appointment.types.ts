@@ -44,3 +44,14 @@ export interface AppointmentWithPatient extends Appointment {
     contact: string | null
   }
 }
+
+export interface CalendarEvent {
+  id: string
+  title: string
+  start: Date
+  end: Date
+  resource: AppointmentWithPatient
+  duration: number
+  status: string
+  isEmergency: boolean
+}

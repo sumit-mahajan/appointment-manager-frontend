@@ -1,125 +1,111 @@
-import { useNavigate } from 'react-router-dom'
-import { MainLayout } from '@/shared/components/layout/MainLayout'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Plus, Loader2 } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card'
+import { MainLayout } from '@/shared/components/layout/MainLayout'
+import { CalendarView } from '@/features/appointment/components/CalendarView'
+import { AppointmentDrawer } from '@/features/appointment/components/AppointmentDrawer'
+import { useAppointments } from '@/features/appointment/hooks/useAppointments'
 import { useAuthStore } from '@/features/auth/store/auth.store'
-import { Calendar, Users, Clock, Plus } from 'lucide-react'
+import type { AppointmentWithPatient } from '@/features/appointment/types/appointment.types'
 import { ROUTES } from '@/shared/constants/app.constants'
 
 export default function DashboardPage() {
+  const [selectedAppointment, setSelectedAppointment] = useState<AppointmentWithPatient | null>(null)
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const { user } = useAuthStore()
-  const navigate = useNavigate()
+
+  const { data: appointmentsResponse, isLoading, isError, error } = useAppointments()
+  
+  const appointments = appointmentsResponse?.data || []
+  const clinicName = user?.clinic_name || 'Clinic'
+
+  const handleEventClick = (appointment: AppointmentWithPatient) => {
+    setSelectedAppointment(appointment)
+    setDrawerOpen(true)
+  }
+
+  const handleDrawerClose = (open: boolean) => {
+    setDrawerOpen(open)
+    if (!open) {
+      // Clear selected appointment after drawer closes
+      setTimeout(() => setSelectedAppointment(null), 300)
+    }
+  }
 
   return (
     <MainLayout>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="space-y-8">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">
-                Welcome back, {user?.name}!
-              </h1>
-              <p className="text-gray-600 mt-2">
-                Here's an overview of your clinic activity
-              </p>
-            </div>
-            <Button 
-              onClick={() => navigate(ROUTES.APPOINTMENTS_NEW)}
-              size="lg"
-              className="flex items-center space-x-2"
-            >
-              <Plus className="h-5 w-5" />
-              <span>Book Appointment</span>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h1 className="text-3xl font-bold">{clinicName}</h1>
+            <p className="text-muted-foreground mt-1">Manage appointments and schedules</p>
+          </div>
+          <Link to={ROUTES.APPOINTMENTS_NEW}>
+            <Button>
+              <Plus className="h-4 w-4 mr-2" />
+              Book New
             </Button>
+          </Link>
+        </div>
+
+        {/* Loading State */}
+        {isLoading && (
+          <div className="flex items-center justify-center py-12">
+            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
           </div>
+        )}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Today's Appointments
-                </CardTitle>
-                <Calendar className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">0</div>
-                <p className="text-xs text-muted-foreground">
-                  No appointments scheduled
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Total Patients
-                </CardTitle>
-                <Users className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">0</div>
-                <p className="text-xs text-muted-foreground">
-                  Start adding patients
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Pending Queue
-                </CardTitle>
-                <Clock className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">0</div>
-                <p className="text-xs text-muted-foreground">
-                  All caught up
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
+        {/* Error State */}
+        {isError && (
           <Card>
-            <CardHeader>
-              <CardTitle>Getting Started</CardTitle>
-              <CardDescription>
-                Complete these steps to get the most out of your clinic management system
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-sm font-semibold text-primary">1</span>
-                  </div>
-                  <div>
-                    <p className="font-medium">Add your first patient</p>
-                    <p className="text-sm text-gray-600">Start building your patient database</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-sm font-semibold text-primary">2</span>
-                  </div>
-                  <div>
-                    <p className="font-medium">Schedule an appointment</p>
-                    <p className="text-sm text-gray-600">Book your first appointment slot</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-sm font-semibold text-primary">3</span>
-                  </div>
-                  <div>
-                    <p className="font-medium">Invite staff members</p>
-                    <p className="text-sm text-gray-600">Collaborate with your team</p>
-                  </div>
-                </div>
+            <CardContent className="py-8">
+              <div className="text-center">
+                <p className="text-red-600 font-medium">Failed to load appointments</p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {error instanceof Error ? error.message : 'An error occurred'}
+                </p>
               </div>
             </CardContent>
           </Card>
-        </div>
+        )}
+
+        {/* Empty State */}
+        {!isLoading && !isError && appointments.length === 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>No Appointments Yet</CardTitle>
+              <CardDescription>
+                Get started by booking your first appointment
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Link to={ROUTES.APPOINTMENTS_NEW}>
+                <Button>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Book Your First Appointment
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Calendar View */}
+        {!isLoading && !isError && appointments.length > 0 && (
+          <CalendarView 
+            appointments={appointments}
+            onEventClick={handleEventClick}
+          />
+        )}
+
+        {/* Appointment Drawer */}
+        <AppointmentDrawer
+          open={drawerOpen}
+          onOpenChange={handleDrawerClose}
+          appointment={selectedAppointment}
+        />
       </div>
     </MainLayout>
   )

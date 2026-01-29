@@ -1,4 +1,4 @@
-export const APP_NAME = 'Appointment Manager'
+export const APP_NAME = 'Appoint'
 
 export const ROUTES = {
   HOME: '/',

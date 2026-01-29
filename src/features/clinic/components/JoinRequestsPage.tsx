@@ -3,6 +3,7 @@ import { CheckCircle, XCircle, Clock, User, Mail, Phone } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs'
+import { MainLayout } from '@/shared/components/layout/MainLayout'
 import { useJoinRequests } from '../hooks/useJoinRequests'
 import { useUpdateJoinRequest } from '../hooks/useUpdateJoinRequest'
 import type { JoinRequest } from '../types/join-request.types'
@@ -84,13 +85,14 @@ export function JoinRequestsPage() {
   )
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Join Requests</h1>
-        <p className="text-gray-600 mt-2">
-          Review and manage requests from users who want to join your clinic
-        </p>
-      </div>
+    <MainLayout>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">Join Requests</h1>
+          <p className="text-gray-600 mt-2">
+            Review and manage requests from users who want to join your clinic
+          </p>
+        </div>
 
       <Tabs value={activeTab} onValueChange={(val) => setActiveTab(val as any)}>
         <TabsList className="grid w-full grid-cols-3">
@@ -165,6 +167,7 @@ export function JoinRequestsPage() {
           )}
         </TabsContent>
       </Tabs>
-    </div>
+      </div>
+    </MainLayout>
   )
 }

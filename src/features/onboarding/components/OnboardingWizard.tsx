@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Building2, Users } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card'
+import { APP_NAME } from '@/shared/constants/app.constants'
 import { StepIndicator } from './StepIndicator'
 import { CreateClinicStep } from './CreateClinicStep'
 import { JoinClinicStep } from './JoinClinicStep'
@@ -58,7 +59,7 @@ export function OnboardingWizard() {
       
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Welcome to Appointment Manager</CardTitle>
+          <CardTitle className="text-2xl">Welcome to {APP_NAME}</CardTitle>
           <CardDescription>
             Let's get you set up. Choose how you'd like to proceed:
           </CardDescription>

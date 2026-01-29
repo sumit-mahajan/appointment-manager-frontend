@@ -46,12 +46,12 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <div className="text-center space-y-8">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
-              Simplify Your{' '}
-              <span className="text-primary">Appointment Management</span>
+              Smart Scheduling,{' '}
+              <span className="text-primary">Simplified</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A modern, intuitive platform designed for healthcare professionals to manage appointments, 
-              patients, and clinic operations efficiently.
+              Appoint is a modern platform designed for healthcare professionals to manage appointments, 
+              patients, and clinic operations with ease.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to={ROUTES.AUTH}>
@@ -110,7 +110,7 @@ export default function LandingPage() {
             Join healthcare professionals who trust our platform for their daily operations.
           </p>
           <Link to={ROUTES.AUTH}>
-            <Button size="lg" className="text-lg px-8 py-6">
+            <Button size="lg" className="text-lg px-8 py-6 mt-6">
               Start Your Free Trial
             </Button>
           </Link>

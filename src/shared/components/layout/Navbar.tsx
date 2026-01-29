@@ -1,6 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Building2, LogOut, User, Bell } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/shared/components/ui/dropdown-menu'
 import { useAuthStore } from '@/features/auth/store/auth.store'
 import { useJoinRequests } from '@/features/clinic/hooks/useJoinRequests'
 import { ROUTES, APP_NAME } from '@/shared/constants/app.constants'
@@ -19,9 +25,12 @@ export function Navbar() {
     navigate(ROUTES.HOME)
   }
 
+  // Extract first name from full name
+  const firstName = user?.name?.split(' ')[0] || user?.name || 'User'
+
   return (
     <nav className="border-b bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
             <Link to={ROUTES.HOME} className="flex items-center space-x-2">
@@ -33,9 +42,6 @@ export function Navbar() {
           <div className="flex items-center space-x-4">
             {isAuthenticated ? (
               <>
-                <Link to={ROUTES.DASHBOARD}>
-                  <Button variant="ghost">Dashboard</Button>
-                </Link>
                 
                 {/* Show notification icon only for owners */}
                 {isOwner && (
@@ -51,23 +57,24 @@ export function Navbar() {
                   </Link>
                 )}
                 
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-2 px-3 py-2 bg-gray-100 rounded-md">
-                    <User className="h-4 w-4 text-gray-600" />
-                    <span className="text-sm font-medium text-gray-700">
-                      {user?.name}
-                    </span>
-                  </div>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleLogout}
-                    className="flex items-center space-x-1"
-                  >
-                    <LogOut className="h-4 w-4" />
-                    <span>Logout</span>
-                  </Button>
-                </div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-2">
+                        <User className="h-4 w-4" />
+                        <span className="text-sm font-medium">
+                          {firstName}
+                        </span>
+                      </div>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      <span>Logout</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </>
             ) : (
               <>

@@ -1,0 +1,199 @@
+/* Override react-big-calendar styles with Tailwind theme */
+
+/* Calendar container */
+.rbc-calendar {
+  @apply h-full font-sans;
+}
+
+/* Header styles */
+.rbc-header {
+  @apply border-b border-border py-3 px-2 font-semibold text-sm bg-muted/50 text-center;
+}
+
+.rbc-header + .rbc-header {
+  @apply border-l border-border;
+}
+
+/* Fix header alignment */
+.rbc-time-header-content {
+  @apply border-l-0;
+}
+
+.rbc-time-header-gutter {
+  @apply flex-shrink-0;
+}
+
+/* Time column */
+.rbc-time-column {
+  @apply text-xs text-muted-foreground;
+}
+
+.rbc-time-slot {
+  @apply border-b border-border/40;
+}
+
+.rbc-timeslot-group {
+  @apply border-b border-border min-h-[60px];
+}
+
+.rbc-time-content {
+  @apply border-t border-border;
+}
+
+.rbc-time-gutter {
+  @apply text-xs text-muted-foreground;
+}
+
+/* Day/Week view styles */
+.rbc-day-slot {
+  @apply border-l border-border min-h-[60px];
+}
+
+.rbc-day-slot .rbc-time-slot {
+  @apply border-t border-border/30;
+}
+
+.rbc-day-slot .rbc-events-container {
+  @apply mr-0;
+}
+
+/* Fix column alignment */
+.rbc-time-content > * + * > * {
+  @apply border-l border-border;
+}
+
+/* Current time indicator */
+.rbc-current-time-indicator {
+  @apply bg-red-500 h-[2px];
+}
+
+.rbc-current-time-indicator::before {
+  @apply bg-red-500 w-2 h-2 rounded-full absolute -left-1 -top-[3px];
+  content: '';
+}
+
+/* Today column highlight */
+.rbc-today {
+  @apply bg-primary/5;
+}
+
+/* Event styles */
+.rbc-event {
+  @apply bg-transparent border-none p-0 shadow-none;
+}
+
+.rbc-event.rbc-selected {
+  @apply bg-transparent;
+}
+
+.rbc-event:focus {
+  @apply outline-none;
+}
+
+/* Event container for overlapping events */
+.rbc-events-container {
+  @apply mr-0;
+}
+
+.rbc-event-content {
+  @apply overflow-hidden h-full w-full;
+}
+
+/* Fix event label positioning */
+.rbc-event-label {
+  @apply hidden;
+}
+
+/* Improve event spacing */
+.rbc-addons-dnd .rbc-addons-dnd-resizable {
+  @apply relative;
+}
+
+.rbc-time-slot {
+  @apply flex items-start;
+}
+
+/* Off-range dates */
+.rbc-off-range {
+  @apply text-muted-foreground/40;
+}
+
+.rbc-off-range-bg {
+  @apply bg-muted/20;
+}
+
+/* Toolbar (handled by custom component, but keeping base styles) */
+.rbc-toolbar {
+  @apply hidden;
+}
+
+/* Week/Day view specific */
+.rbc-time-header {
+  @apply border-b border-border;
+}
+
+.rbc-time-header-content {
+  @apply border-l border-border;
+}
+
+.rbc-allday-cell {
+  @apply border-b border-border;
+}
+
+/* Label styles */
+.rbc-label {
+  @apply text-xs text-muted-foreground px-1;
+}
+
+/* Accessibility */
+.rbc-show-more {
+  @apply text-xs text-primary hover:underline cursor-pointer;
+}
+
+/* Scrollbar styling */
+.rbc-time-content::-webkit-scrollbar {
+  @apply w-2;
+}
+
+.rbc-time-content::-webkit-scrollbar-track {
+  @apply bg-muted/20 rounded;
+}
+
+.rbc-time-content::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded hover:bg-muted-foreground/50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rbc-time-slot {
+    @apply text-[10px];
+  }
+  
+  .rbc-header {
+    @apply text-xs py-2 px-1;
+  }
+  
+  .rbc-label {
+    @apply text-[10px] px-0.5;
+  }
+  
+  .rbc-time-gutter {
+    @apply text-[10px];
+  }
+  
+  .rbc-timeslot-group {
+    @apply min-h-[50px];
+  }
+  
+  /* Reduce toolbar size on mobile */
+  .calendar-container {
+    @apply p-2;
+  }
+}
+
+/* Dark mode specific adjustments */
+@media (prefers-color-scheme: dark) {
+  .rbc-time-slot {
+    @apply border-border/30;
+  }
+}

@@ -6,7 +6,7 @@ export function Footer() {
 
   return (
     <footer className="border-t bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
@@ -14,7 +14,7 @@ export function Footer() {
               <span className="text-lg font-bold text-gray-900">{APP_NAME}</span>
             </div>
             <p className="text-sm text-gray-600">
-              Streamline your clinic operations with our modern appointment management system.
+              Smart appointment management for modern healthcare professionals.
             </p>
           </div>
 
