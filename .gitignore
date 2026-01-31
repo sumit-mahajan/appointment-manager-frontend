@@ -33,3 +33,4 @@ dist-ssr
 
 # Vite
 public/vite.svg
+coverage/
