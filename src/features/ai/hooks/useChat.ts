@@ -1,16 +1,30 @@
 import { useChat as useAIChat } from 'ai/react'
+import { useEffect } from 'react'
 import { useChatStore } from '../store/chat.store'
 import { useAuthStore } from '@/features/auth/store/auth.store'
 import { API_BASE_URL, API_ENDPOINTS } from '@/shared/constants/api.constants'
 import { toast } from 'sonner'
+import { useSpeechRecognition } from './useSpeechRecognition'
 
 /**
  * Custom hook for AI chat functionality
  * Wraps Vercel AI SDK's useChat with our store and auth
+ * Includes voice input integration
  */
 export function useChat() {
   const { isOpen, toggleChat, openChat, closeChat, clearMessages: clearStoreMessages } = useChatStore()
   const { token } = useAuthStore()
+
+  // Speech recognition integration
+  const {
+    isListening,
+    transcript,
+    interimTranscript,
+    startListening,
+    stopListening,
+    isSupported: isSpeechSupported,
+    error: speechError,
+  } = useSpeechRecognition()
 
   // Get user's timezone and current date/time from browser
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -38,6 +52,7 @@ export function useChat() {
     reload,
     append,
     setMessages,
+    setInput,
   } = useAIChat({
     api: `${API_BASE_URL}${API_ENDPOINTS.AI_CHAT}`,
     headers: {
@@ -61,6 +76,22 @@ export function useChat() {
     },
   })
 
+  // Update input field with speech transcript in real-time
+  useEffect(() => {
+    if (isListening) {
+      // Combine final transcript with interim for live updates
+      const fullTranscript = transcript + interimTranscript
+      setInput(fullTranscript)
+    }
+  }, [transcript, interimTranscript, isListening, setInput])
+
+  // Show speech errors as toasts
+  useEffect(() => {
+    if (speechError) {
+      toast.error(speechError)
+    }
+  }, [speechError])
+
   const clearMessages = () => {
     setMessages([])
     clearStoreMessages()
@@ -74,6 +105,10 @@ export function useChat() {
     isLoading,
     error,
 
+    // Voice state
+    isListening,
+    isSpeechSupported,
+
     // Actions
     handleInputChange,
     handleSubmit,
@@ -84,5 +119,9 @@ export function useChat() {
     stop,
     reload,
     append,
+
+    // Voice actions
+    startVoice: startListening,
+    stopVoice: stopListening,
   }
 }
