@@ -23,6 +23,9 @@ export const API_ENDPOINTS = {
   APPOINTMENT_QUEUE: '/appointments/queue',
   SLOTS_AVAILABILITY: '/slots/availability',
 
+  // AI
+  AI_CHAT: '/ai/chat',
+
   // Health
   HEALTH: '/health',
 } as const
