@@ -128,6 +128,7 @@ export const CalendarView = ({ appointments, onEventClick }: CalendarViewProps) 
         duration: apt.duration_in_minutes,
         status: apt.status || 'pending',
         isEmergency: apt.is_emergency || false,
+        bookedVia: apt.booked_via ?? 'staff',
       }
     })
   }, [appointments])

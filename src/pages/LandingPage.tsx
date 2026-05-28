@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
 import {
   Calendar,
-  Users,
-  Clock,
-  CheckCircle2,
-  Building2,
-  Shield,
-  Sparkles,
   Mic,
   MessageSquare,
-  Zap,
+  Users,
+  CheckCircle2,
+  Clock,
+  Shield,
 } from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -21,329 +18,211 @@ import {
 import { MainLayout } from "@/shared/components/layout/MainLayout";
 import { ROUTES } from "@/shared/constants/app.constants";
 
-export default function LandingPage() {
-  const features = [
-    {
-      icon: Sparkles,
-      title: "AI-Powered Assistant",
-      description:
-        "Natural language AI that understands your commands and manages appointments intelligently.",
-      highlight: true,
-    },
-    {
-      icon: Mic,
-      title: "Voice-Operated Interface",
-      description:
-        "Speak naturally to book appointments, check schedules, and manage patients hands-free.",
-      highlight: true,
-    },
-    {
-      icon: MessageSquare,
-      title: "Conversational AI",
-      description:
-        "Chat with AI to handle complex scheduling tasks, conflict resolution, and availability checks.",
-      highlight: true,
-    },
-    {
-      icon: Calendar,
-      title: "Smart Scheduling",
-      description:
-        "Intelligent appointment scheduling with AI-powered conflict detection and suggestions.",
-    },
-    {
-      icon: Users,
-      title: "Patient Management",
-      description:
-        "Comprehensive patient records with AI-assisted search and organization.",
-    },
-    {
-      icon: Clock,
-      title: "Real-time Availability",
-      description:
-        "Check available time slots instantly with voice or text commands.",
-    },
-    {
-      icon: Building2,
-      title: "Multi-Clinic Support",
-      description: "Manage multiple clinics with role-based access control.",
-    },
-    {
-      icon: Shield,
-      title: "Secure & Compliant",
-      description:
-        "Enterprise-grade security with data isolation for complete privacy.",
-    },
-    {
-      icon: Zap,
-      title: "Lightning Fast",
-      description: "Instant responses with real-time streaming AI technology.",
-    },
-  ];
+const features = [
+  {
+    icon: Mic,
+    title: "Voice booking",
+    description:
+      "Speak naturally to book, reschedule, or cancel — hands-free at the front desk.",
+  },
+  {
+    icon: MessageSquare,
+    title: "AI receptionist",
+    description:
+      "An assistant that searches patients, checks slots, and confirms bookings in conversation.",
+  },
+  {
+    icon: Calendar,
+    title: "Live calendar",
+    description:
+      "See today's schedule at a glance with conflict detection and emergency override.",
+  },
+  {
+    icon: Users,
+    title: "Patient records",
+    description:
+      "Create and find patients by name or phone, scoped to your clinic.",
+  },
+];
 
+const steps = [
+  {
+    title: "Set up your clinic",
+    description:
+      "Register, create or join a clinic, and invite your reception team.",
+  },
+  {
+    title: "Manage the schedule",
+    description:
+      "Book appointments from the calendar, voice assistant, or public booking link.",
+  },
+  {
+    title: "Stay on top of requests",
+    description:
+      "Review pending online requests and confirm, reschedule, or cancel in one place.",
+  },
+];
+
+const highlights = [
+  "Multi-clinic support with role-based access",
+  "Public booking link for patients — no login required",
+  "Concurrent booking protection at the database level",
+  "Voice + text input for the AI receptionist",
+];
+
+export default function LandingPage() {
   return (
     <MainLayout>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary/10 via-primary/5 to-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative">
-          <div className="text-center space-y-8">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
-              <Sparkles className="h-4 w-4" />
-              AI-Powered · Voice-Operated · Real-time Streaming
-            </div>
-            {/* <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
-              Voice-Operated <span className="text-primary">AI Assistant</span>
-              <br />
-              for Healthcare */}
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
-              Smart Scheduling, <span className="text-primary">Simplified</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-              Talk to your AI assistant to manage appointments, patients, and
-              clinic operations. No typing required - just speak naturally.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link to={ROUTES.AUTH}>
-                <Button
-                  size="lg"
-                  className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all"
-                >
-                  <Mic className="mr-2 h-5 w-5" />
-                  Try Voice Assistant
-                </Button>
-              </Link>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-                <MessageSquare className="mr-2 h-5 w-5" />
-                View Demo
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* AI Features Highlight */}
-      <section className="py-16 bg-gradient-to-r from-primary to-primary/80 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="space-y-3">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-2">
-                <Mic className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-semibold">Voice Commands</h3>
-              <p className="text-white/90">"Book John for tomorrow at 2pm"</p>
-            </div>
-            <div className="space-y-3">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-2">
-                <MessageSquare className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-semibold">Natural Language</h3>
-              <p className="text-white/90">
-                Chat like you're talking to a colleague
-              </p>
-            </div>
-            <div className="space-y-3">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-2">
-                <Zap className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-semibold">Real-time AI</h3>
-              <p className="text-white/90">
-                Streaming responses powered by Gemini
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
-              Everything You Need, Voice-Activated
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Advanced AI features combined with powerful clinic management
-              tools.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <Card
-                  key={index}
-                  className={`border-2 transition-all ${
-                    feature.highlight
-                      ? "border-primary bg-primary/5 hover:shadow-lg hover:border-primary/80"
-                      : "hover:border-primary/50"
-                  }`}
-                >
-                  <CardHeader>
-                    <div
-                      className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${
-                        feature.highlight ? "bg-primary/20" : "bg-primary/10"
-                      }`}
-                    >
-                      <Icon
-                        className={`h-6 w-6 ${
-                          feature.highlight ? "text-primary" : "text-primary/80"
-                        }`}
-                      />
-                    </div>
-                    {feature.highlight && (
-                      <div className="inline-flex items-center gap-1 text-xs font-semibold text-primary mb-2">
-                        <Sparkles className="h-3 w-3" />
-                        AI FEATURE
-                      </div>
-                    )}
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
-                    <CardDescription className="text-base">
-                      {feature.description}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
-              How Voice AI Works
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Three simple steps to manage your clinic with voice commands
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-sm border-2 border-transparent hover:border-primary/20 transition-all">
-              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">
-                1
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Click & Speak</h3>
-              <p className="text-gray-600">
-                Open the AI assistant and click the microphone button to start
-                speaking your command.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-xl shadow-sm border-2 border-transparent hover:border-primary/20 transition-all">
-              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">
-                2
-              </div>
-              <h3 className="text-xl font-semibold mb-3">AI Understands</h3>
-              <p className="text-gray-600">
-                Our AI processes your voice in real-time, understanding context
-                and intent naturally.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-xl shadow-sm border-2 border-transparent hover:border-primary/20 transition-all">
-              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">
-                3
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Action Complete</h3>
-              <p className="text-gray-600">
-                AI executes your command—booking appointments, checking
-                schedules, or managing patients.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-primary/80 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            Ready to Experience Voice AI?
-          </h2>
-          <p className="text-xl text-white/90">
-            Join healthcare professionals using AI to save hours every week.
+      {/* Hero */}
+      <section className="border-b bg-gradient-to-b from-primary/5 to-background">
+        <div className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 sm:py-28">
+          <p className="mb-4 text-sm font-medium uppercase tracking-wide text-primary">
+            For clinics of any specialty
           </p>
-          <Link to={ROUTES.AUTH}>
-            <Button
-              size="lg"
-              variant="secondary"
-              className="text-lg px-8 py-6 mt-6 shadow-xl"
-            >
-              <Sparkles className="mr-2 h-5 w-5" />
-              Start Free Trial
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            Voice-first appointment management for clinics
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
+            An AI receptionist that understands speech and text — book patients,
+            check availability, and manage your calendar without switching tools.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link to={ROUTES.AUTH}>
+              <Button size="lg" className="min-w-[160px] px-8">
+                Open App
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <div className="mb-12 text-center">
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            Everything a reception desk needs
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+            Built around how front-desk staff actually work — not generic
+            scheduling software.
+          </p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <Card key={feature.title} className="border-border/60">
+                <CardHeader>
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                    <Icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    {feature.description}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="border-y bg-muted/30">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="mb-12 text-center">
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              How it works
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              From signup to confirmed appointment in three steps.
+            </p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3">
+            {steps.map((step, index) => (
+              <div key={step.title} className="relative text-center md:text-left">
+                <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground md:mx-0">
+                  {index + 1}
+                </div>
+                <h3 className="text-lg font-semibold">{step.title}</h3>
+                <p className="mt-2 text-muted-foreground leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Highlights */}
+      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              Designed for real clinic operations
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Appoint handles the day-to-day work of a reception team — not just
+              a calendar widget. Each clinic has its own patient list, schedule,
+              and staff access.
+            </p>
+            <ul className="mt-8 space-y-4">
+              {highlights.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                  <span className="text-foreground/90">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Card className="border-border/60">
+              <CardHeader className="pb-2">
+                <Clock className="mb-2 h-8 w-8 text-primary" />
+                <CardTitle className="text-base">Pending requests</CardTitle>
+                <CardDescription>
+                  Online bookings land as pending until your team approves them.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            <Card className="border-border/60">
+              <CardHeader className="pb-2">
+                <Shield className="mb-2 h-8 w-8 text-primary" />
+                <CardTitle className="text-base">Clinic isolation</CardTitle>
+                <CardDescription>
+                  Patient data and appointments stay scoped to each clinic.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            <Card className="border-border/60 sm:col-span-2">
+              <CardHeader className="pb-2">
+                <Mic className="mb-2 h-8 w-8 text-primary" />
+                <CardTitle className="text-base">Voice or type</CardTitle>
+                <CardDescription>
+                  Use the AI assistant by speaking or typing — same workflow,
+                  same actions.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6">
+          <h2 className="text-2xl font-semibold sm:text-3xl">
+            Ready to try it?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/90">
+            Log in as reception staff, set up your clinic, and start managing
+            appointments in minutes.
+          </p>
+          <Link to={ROUTES.AUTH} className="mt-8 inline-block">
+            <Button size="lg" variant="secondary" className="min-w-[160px]">
+              Open App
             </Button>
           </Link>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                Built for Modern Healthcare
-              </h2>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900">
-                      AI-Powered Intelligence
-                    </h3>
-                    <p className="text-gray-600">
-                      Advanced natural language processing with Google Gemini
-                      for accurate understanding.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900">
-                      Real-time Streaming
-                    </h3>
-                    <p className="text-gray-600">
-                      See AI responses appear instantly as they're generated, no
-                      waiting.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900">
-                      Multi-Tenant Security
-                    </h3>
-                    <p className="text-gray-600">
-                      Complete data isolation with enterprise-grade security for
-                      each clinic.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-lg text-gray-900">
-                      Web Speech API
-                    </h3>
-                    <p className="text-gray-600">
-                      Browser-native voice recognition for fast, accurate
-                      transcription.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-12 flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]" />
-              <div className="relative">
-                <Sparkles className="h-64 w-64 text-primary/20" />
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </MainLayout>

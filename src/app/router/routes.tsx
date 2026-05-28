@@ -11,6 +11,7 @@ const OnboardingPage = lazy(() => import('@/pages/OnboardingPage'))
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'))
 const JoinRequestsPage = lazy(() => import('@/pages/JoinRequestsPage'))
 const BookAppointmentPage = lazy(() => import('@/pages/BookAppointmentPage'))
+const BookPage = lazy(() => import('@/pages/BookPage'))
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'))
 
 // Loading component
@@ -75,6 +76,14 @@ export const router = createBrowserRouter([
           <BookAppointmentPage />
         </Suspense>
       </ProtectedRoute>
+    ),
+  },
+  {
+    path: ROUTES.BOOK,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <BookPage />
+      </Suspense>
     ),
   },
   {

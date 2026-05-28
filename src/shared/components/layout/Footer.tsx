@@ -1,70 +1,57 @@
-import { Building2 } from 'lucide-react'
-import { APP_NAME } from '@/shared/constants/app.constants'
+import { Link } from 'react-router-dom'
+import { APP_NAME, ROUTES } from '@/shared/constants/app.constants'
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="space-y-3">
-            <div className="flex items-center space-x-2">
-              <Building2 className="h-6 w-6 text-primary" />
-              <span className="text-lg font-bold text-gray-900">{APP_NAME}</span>
-            </div>
-            <p className="text-sm text-gray-600">
-              Smart appointment management for modern healthcare professionals.
+    <footer className="border-t bg-muted/20">
+      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="sm:col-span-2 lg:col-span-2">
+            <p className="text-lg font-semibold text-foreground">{APP_NAME}</p>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              Voice-first appointment management for clinics. AI-assisted
+              scheduling, patient records, and a public booking link — built for
+              reception teams.
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">Product</h3>
-            <ul className="space-y-2 text-sm text-gray-600">
+            <p className="text-sm font-semibold text-foreground">Product</p>
+            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#features" className="hover:text-primary transition-colors">
-                  Features
-                </a>
+                <Link to={ROUTES.AUTH} className="hover:text-primary transition-colors">
+                  Staff login
+                </Link>
               </li>
               <li>
-                <a href="#pricing" className="hover:text-primary transition-colors">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#docs" className="hover:text-primary transition-colors">
-                  Documentation
-                </a>
+                <Link to={ROUTES.BOOK} className="hover:text-primary transition-colors">
+                  Book appointment
+                </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">Company</h3>
-            <ul className="space-y-2 text-sm text-gray-600">
+            <p className="text-sm font-semibold text-foreground">Source</p>
+            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#about" className="hover:text-primary transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-primary transition-colors">
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a href="#privacy" className="hover:text-primary transition-colors">
-                  Privacy Policy
+                <a
+                  href="https://github.com/your-username/appointment-manager"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors"
+                >
+                  GitHub
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-200">
-          <p className="text-center text-sm text-gray-600">
-            © {currentYear} {APP_NAME}. All rights reserved.
-          </p>
+        <div className="mt-10 border-t pt-8 text-center text-sm text-muted-foreground">
+          © {year} {APP_NAME}. All rights reserved.
         </div>
       </div>
     </footer>

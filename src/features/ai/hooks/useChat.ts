@@ -4,7 +4,7 @@ import { useChatStore } from '../store/chat.store'
 import { useAuthStore } from '@/features/auth/store/auth.store'
 import { API_BASE_URL, API_ENDPOINTS } from '@/shared/constants/api.constants'
 import { toast } from 'sonner'
-import { useSpeechRecognition } from './useSpeechRecognition'
+import { useWhisperRecognition } from './useWhisperRecognition'
 
 /**
  * Custom hook for AI chat functionality
@@ -19,12 +19,12 @@ export function useChat() {
   const {
     isListening,
     transcript,
-    interimTranscript,
     startListening,
     stopListening,
     isSupported: isSpeechSupported,
     error: speechError,
-  } = useSpeechRecognition()
+    isTranscribing,
+  } = useWhisperRecognition()
 
   // Get user's timezone and current date/time from browser
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -76,14 +76,12 @@ export function useChat() {
     },
   })
 
-  // Update input field with speech transcript in real-time
+  // Update input field with speech transcript
   useEffect(() => {
-    if (isListening) {
-      // Combine final transcript with interim for live updates
-      const fullTranscript = transcript + interimTranscript
-      setInput(fullTranscript)
+    if (transcript) {
+      setInput(transcript)
     }
-  }, [transcript, interimTranscript, isListening, setInput])
+  }, [transcript, setInput])
 
   // Show speech errors as toasts
   useEffect(() => {
@@ -106,7 +104,7 @@ export function useChat() {
     error,
 
     // Voice state
-    isListening,
+    isListening: isListening || isTranscribing,
     isSpeechSupported,
 
     // Actions

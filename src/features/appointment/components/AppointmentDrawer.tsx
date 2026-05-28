@@ -210,7 +210,14 @@ export const AppointmentDrawer = ({ open, onOpenChange, appointment }: Appointme
           {/* Patient and Appointment Info */}
           <div className="space-y-2 pb-4 border-b">
             <div className="flex items-center justify-between">
-              <span className="font-medium">{patientName}</span>
+              <span className="font-medium flex items-center gap-2">
+                {patientName}
+                {appointment.booked_via === 'patient' && (
+                  <Badge variant="outline" className="border-blue-500 text-blue-700 text-xs">
+                    Patient
+                  </Badge>
+                )}
+              </span>
               <Badge variant={getStatusBadgeVariant(appointment.status)}>
                 {getStatusLabel(appointment.status)}
               </Badge>

@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/sha
 import { MainLayout } from '@/shared/components/layout/MainLayout'
 import { CalendarView } from '@/features/appointment/components/CalendarView'
 import { AppointmentDrawer } from '@/features/appointment/components/AppointmentDrawer'
+import { PendingAppointmentsPanel } from '@/features/appointment/components/PendingAppointmentsPanel'
 import { useAppointments } from '@/features/appointment/hooks/useAppointments'
 import { useAuthStore } from '@/features/auth/store/auth.store'
 import type { AppointmentWithPatient } from '@/features/appointment/types/appointment.types'
@@ -50,6 +51,10 @@ export default function DashboardPage() {
             </Button>
           </Link>
         </div>
+
+        {!isLoading && !isError && appointments.length > 0 && (
+          <PendingAppointmentsPanel appointments={appointments} />
+        )}
 
         {/* Loading State */}
         {isLoading && (

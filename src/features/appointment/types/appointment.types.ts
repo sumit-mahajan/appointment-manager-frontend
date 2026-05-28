@@ -13,6 +13,8 @@ export interface Appointment {
   did_show_up: boolean | null
   created_at: string | null
   updated_at: string | null
+  reason?: string | null
+  booked_via?: 'staff' | 'patient' | null
 }
 
 export interface CreateAppointmentRequest {
@@ -54,4 +56,5 @@ export interface CalendarEvent {
   duration: number
   status: string
   isEmergency: boolean
+  bookedVia?: 'staff' | 'patient' | null
 }

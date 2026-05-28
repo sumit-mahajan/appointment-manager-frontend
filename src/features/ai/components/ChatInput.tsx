@@ -129,7 +129,7 @@ export function ChatInput({
       {/* Unsupported Browser Message */}
       {!isSpeechSupported && (
         <div className="mt-2 text-xs text-muted-foreground text-center">
-          Voice input not supported in this browser. Please use Chrome or Edge.
+          Voice input requires microphone access and a supported browser.
         </div>
       )}
     </form>

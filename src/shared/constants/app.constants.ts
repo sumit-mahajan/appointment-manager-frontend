@@ -9,6 +9,7 @@ export const ROUTES = {
   PATIENTS: '/patients',
   APPOINTMENTS: '/appointments',
   APPOINTMENTS_NEW: '/appointments/new',
+  BOOK: '/book',
   SETTINGS: '/settings',
 } as const
 

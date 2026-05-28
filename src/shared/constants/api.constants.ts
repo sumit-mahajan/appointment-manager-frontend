@@ -26,6 +26,14 @@ export const API_ENDPOINTS = {
   // AI
   AI_CHAT: '/ai/chat',
 
+  // Voice
+  VOICE_TRANSCRIBE: '/voice/transcribe',
+
+  // Public booking
+  PUBLIC_CLINICS: '/public/clinics',
+  PUBLIC_CLINIC: (id: string) => `/public/clinics/${id}`,
+  PUBLIC_BOOK: '/public/book',
+
   // Health
   HEALTH: '/health',
 } as const
