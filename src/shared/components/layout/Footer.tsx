@@ -38,7 +38,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               <li>
                 <a
-                  href="https://github.com/your-username/appointment-manager"
+                  href="https://github.com/sumit-mahajan/appointment-manager-backend"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary transition-colors"
